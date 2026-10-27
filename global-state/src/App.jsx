@@ -1,10 +1,11 @@
 import React from 'react'
 import ProductList from './componts/ProductList'
+import Header from './componts/Header'
 
 function App() {
   return (
     <div>
-      <h1>My Shoping Cart</h1>
+      <Header />
       <ProductList />
     </div>
   )
