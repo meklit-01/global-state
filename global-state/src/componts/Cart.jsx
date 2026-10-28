@@ -3,6 +3,7 @@ import CartContext from "../context/CartContext";
 
 function Cart() {
   const { cart, setCart } = useContext(CartContext);
+  const totalPrice = cart.reduce((total, product) => total + product.price, 0)
 
   function removeFromCart(indexToRemove){
     setCart((prevCart)=>
@@ -27,6 +28,7 @@ function Cart() {
           </div>
         ))
       )}
+      <p>Total: {totalPrice} ETB</p>
     </section>
   );
 }
