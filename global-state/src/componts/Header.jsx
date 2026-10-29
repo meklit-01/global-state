@@ -6,7 +6,9 @@ function Header() {
   return (
     <header>
         <h1>My Shopping Cart</h1>
-        <p>Cart items: {cart.length}</p>
+        <p>Cart items: {""}
+          {cart.reduce((total, product) => total + product.quantity, 0)}
+        </p>
     </header>
   )
 }
