@@ -13,6 +13,10 @@ function Cart() {
     );
   }
 
+  function clearCart(){
+    setCart([]);
+  }
+
   return (
     <section>
       <h2>Your Cart</h2>
@@ -32,6 +36,7 @@ function Cart() {
         ))
       )}
       <p>Total: {totalPrice} ETB</p>
+      <button onClick={clearCart}>Clear Cart</button>
     </section>
   );
 }
