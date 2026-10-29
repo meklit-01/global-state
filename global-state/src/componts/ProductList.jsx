@@ -1,10 +1,11 @@
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import products from "../data/products";
 import CartContext from "../context/CartContext";
 
 function ProductList() {
   const { cart, setCart } = useContext(CartContext);
+  const [message, setMessage] = useState("");
 
   function addToCart(product) {
   setCart((prevCart) => {
@@ -22,12 +23,16 @@ function ProductList() {
 
     return [...prevCart, { ...product, quantity: 1 }];
   });
+
+  setMessage(`${product.name} added to cart!`)
 }
 
   return (
     <section>
       <h2>Products</h2>
-
+      {message && <p>{message}
+         <button onClick={() => setMessage("")}>Dismiss</button>
+        </p>}
       {products.map((product) => (
         <div key={product.id}>
           <h3>{product.name}</h3>
