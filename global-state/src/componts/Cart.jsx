@@ -7,7 +7,10 @@ function Cart() {
 
   function removeFromCart(indexToRemove){
     setCart((prevCart)=>
-    prevCart.filter((product, index) => index != indexToRemove));
+    {
+      return prevCart.map((item)=> item.id === indexToRemove ? {... item, quantity: item.quantity -1} : item).filter((item) => item.quantity > 0);
+    }
+    );
   }
 
   return (
@@ -22,7 +25,7 @@ function Cart() {
             <h3>{product.name}</h3>
             <p>Price: {product.price} ETB</p>
             <p>Quantity: {product.quantity}</p>
-            <button onClick={()=> removeFromCart(index)}>
+            <button onClick={()=> removeFromCart(product.id)}>
               Remove
             </button>
           </div>
