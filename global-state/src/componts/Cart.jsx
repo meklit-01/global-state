@@ -3,7 +3,7 @@ import CartContext from "../context/CartContext";
 
 function Cart() {
   const { cart, setCart } = useContext(CartContext);
-  const totalPrice = cart.reduce((total, product) => total + product.price, 0)
+  const totalPrice = cart.reduce((total, product) => total + product.price*product.quantity, 0)
 
   function removeFromCart(indexToRemove){
     setCart((prevCart)=>
@@ -21,7 +21,7 @@ function Cart() {
           <div key={`${product.id}-${index}`}>
             <h3>{product.name}</h3>
             <p>Price: {product.price} ETB</p>
-
+            <p>Quantity: {product.quantity}</p>
             <button onClick={()=> removeFromCart(index)}>
               Remove
             </button>
