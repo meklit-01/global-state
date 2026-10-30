@@ -44,6 +44,7 @@ function Cart() {
           <div key={`${product.id}-${index}`}>
             <h3>{product.name}</h3>
             <p>Price: {product.price} ETB</p>
+            <p>Subtotal: {product.price * product.quantity} ETB</p>
             <p>Quantity: {product.quantity}</p>
             <button onClick={() => removeFromCart(product.id)}>Remove</button>
           </div>
