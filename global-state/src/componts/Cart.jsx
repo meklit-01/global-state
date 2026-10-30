@@ -1,6 +1,14 @@
 import { useContext } from "react";
 import CartContext from "../context/CartContext";
 
+function formatMoney(amount){
+  return new Intl.NumberFormat("en-ET", {
+    style: "currency",
+    currency: "ETB",
+    maximumFractionDigits: 2,
+   }).format(amount);
+}
+
 function Cart() {
   const { cart, setCart } = useContext(CartContext);
   const totalPrice = cart.reduce(
@@ -43,14 +51,14 @@ function Cart() {
         cart.map((product, index) => (
           <div key={`${product.id}-${index}`}>
             <h3>{product.name}</h3>
-            <p>Price: {product.price} ETB</p>
-            <p>Subtotal: {product.price * product.quantity} ETB</p>
+            <p>Price: {formatMoney(product.price)} </p>
+            <p>Subtotal: {formatMoney(product.price * product.quantity)} </p>
             <p>Quantity: {product.quantity}</p>
             <button onClick={() => removeFromCart(product.id)}>Remove</button>
           </div>
         ))
       )}
-      <p>Total: {totalPrice} ETB</p>
+      <p>Total: {formatMoney(totalPrice)} ETB</p>
       <button onClick={clearCart}>Clear Cart</button>
     </section>
   );
