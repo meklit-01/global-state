@@ -28,7 +28,7 @@ function ProductList() {
 }
 
   return (
-    <section>
+    <section id="products">
       <h2>Products</h2>
       {message && <p>{message}
          <button onClick={() => setMessage("")}>Dismiss</button>

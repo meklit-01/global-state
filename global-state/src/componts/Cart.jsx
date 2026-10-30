@@ -19,7 +19,10 @@ function Cart() {
 
   return (
     <section>
-      <h2>Your Cart</h2>
+      <div>
+        <h2>Your Cart</h2>
+        <a href="#products">Continue Shopping</a>
+      </div>
 
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
