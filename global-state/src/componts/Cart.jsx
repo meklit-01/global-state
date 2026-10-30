@@ -16,17 +16,27 @@ function Cart() {
     0,
   );
 
-  function removeFromCart(indexToRemove) {
-    setCart((prevCart) => {
-      return prevCart
-        .map((item) =>
-          item.id === indexToRemove
-            ? { ...item, quantity: item.quantity - 1 }
-            : item,
-        )
-        .filter((item) => item.quantity > 0);
-    });
+  
+
+  function increaseQuantity(productId){
+    setCart((prevCart)=>
+      prevCart.map((item)=> item.id === productId ?
+      {...item, quantity: item.quantity + 1} : item
+  )
+    )
   }
+
+  function decreaseQuantity(productId) {
+  setCart((prevCart) =>
+    prevCart
+      .map((item) =>
+        item.id === productId
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+      .filter((item) => item.quantity > 0)
+  );
+}
 
   function clearCart() {
     const confirmed = window.confirm(
@@ -53,12 +63,15 @@ function Cart() {
             <h3>{product.name}</h3>
             <p>Price: {formatMoney(product.price)} </p>
             <p>Subtotal: {formatMoney(product.price * product.quantity)} </p>
-            <p>Quantity: {product.quantity}</p>
-            <button onClick={() => removeFromCart(product.id)}>Remove</button>
+            <p>Quantity: {product.quantity}
+              <button onClick={()=> decreaseQuantity(product.id)}>-</button>
+              <button onClick={()=> increaseQuantity(product.id)}>+</button>
+            </p>
+            
           </div>
         ))
       )}
-      <p>Total: {formatMoney(totalPrice)} ETB</p>
+      <p>Total: {formatMoney(totalPrice)} </p>
       <button onClick={clearCart}>Clear Cart</button>
     </section>
   );
